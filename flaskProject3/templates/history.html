@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculation History</title>
+</head>
+<body>
+    <h1>Calculation History</h1>
+
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Content</th>
+        </tr>
+        {% for entry in history %}
+        <tr>
+            <td>{{ entry.time_ans }}</td>
+            <td>{{ entry.content_ans }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

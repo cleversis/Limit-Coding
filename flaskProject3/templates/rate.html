@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>利率计算器</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .form {
+            margin-bottom: 20px;
+        }
+
+        .form label {
+            display: inline-block;
+            width: 200px;
+        }
+
+        .form input[type="number"] {
+            padding: 5px;
+            width: 150px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            background-color: lightpink;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background-color: #ff2b8d;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .result label {
+            font-weight: bold;
+        }
+
+        .separator {
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+    </style>
+    <script>
+        function calculateSimpleInterest() {
+            var principal = parseFloat(document.getElementById("principal").value);
+            var rate = parseFloat(document.getElementById("rate").value);
+            var time = parseFloat(document.getElementById("time").value);
+
+            var interest = principal * (rate / 100) * time;
+            var totalAmount = principal + interest;
+
+            document.getElementById("simpleInterest").innerHTML = "利息为：" + interest.toFixed(2);
+            document.getElementById("totalAmount").innerHTML = "本金和利息总额为：" + totalAmount.toFixed(2);
+        }
+
+        function calculateCompoundInterest() {
+            var principal = parseFloat(document.getElementById("principal").value);
+            var rate = parseFloat(document.getElementById("rate").value);
+            var time = parseFloat(document.getElementById("time").value);
+            var compoundFrequency = parseFloat(document.getElementById("compoundFrequency").value);
+
+            var interest = principal * ((1 + rate / 100 / compoundFrequency) ** (compoundFrequency * time) - 1);
+            var totalAmount = principal + interest;
+
+            document.getElementById("compoundInterest").innerHTML = "利息为：" + interest.toFixed(2);
+            document.getElementById("totalAmount").innerHTML = "本金和利息总额为：" + totalAmount.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>利率计算器</h1>
+        </div>
+        <div class="form">
+            <form>
+                <label>本金：</label>
+                <input type="number" id="principal"><br><br>
+
+                <label>年利率 (百分比)：</label>
+                <input type="number" id="rate"><br><br>
+
+                <label>时间 (年)：</label>
+                <input type="number" id="time"><br><br>
+
+                <label>复利计算频率：</label>
+                <input type="number" id="compoundFrequency"><br><br>
+                <label>(年复利 1次，季度复利 4次)</label>
+            </form>
+        </div>
+        <div class="buttons">
+            <button type="button" onclick="calculateSimpleInterest()"><strong>计算简单利息</strong></button>
+            <button type="button" onclick="calculateCompoundInterest()"><strong>计算复利</strong></button>
+        </div>
+        <div class="separator"></div>
+        <div class="result">
+            <h2>计算结果：</h2>
+            <p id="simpleInterest"></p>
+            <p id="compoundInterest"></p>
+            <p id="totalAmount"></p>
+        </div>
+    </div>
+</body>
+</html>

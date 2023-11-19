@@ -148,16 +148,7 @@ function addToHistory() {
   li.innerText = result;
   historyList.appendChild(li);
   history.push(result); // 将运算结果添加到历史记录数组中
-  // 发送POST请求将历史记录存入数据库
-  let xhr = new XMLHttpRequest();
-  xhr.open('POST', 'save_history.php', true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      console.log(xhr.responseText); // 可以根据需要处理服务器的响应
-    }
-  };
-  xhr.send(JSON.stringify({ history: result }));
+
 }
 </script>
 </body>
